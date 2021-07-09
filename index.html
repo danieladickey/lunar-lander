@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Lunar Lander</title>
+
+    <!--  Dr. Mathias's CSS  -->
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!--  Icon  -->
+    <link href="assets/images/lunar_lander.png" rel="icon">
+    <link href="assets/images/lunar_lander.png" rel="apple-touch-icon">
+</head>
+<body onload="MyGame.game.initialize();">
+
+<div id="game" class="bg-dark">
+    <div id="main-menu" class="screen frame">
+        <h1>Lunar Lander</h1>
+        <ul class="menu">
+            <li>
+                <button id="id-new-game" class="btn btn-primary">New Game</button>
+            </li>
+            <li>
+                <button id="id-high-scores" class="btn btn-primary">High&nbsp;Scores</button>
+            </li>
+            <li>
+                <button id="id-instructions" class="btn btn-primary">Instructions</button>
+            </li>
+            <li>
+                <button id="id-settings" class="btn btn-primary">Settings</button>
+            </li>
+            <li>
+                <button id="id-credits" class="btn btn-primary">Credits</button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="pause" class="screen frame">
+        <h1>Game Paused</h1>
+        <ul class="menu">
+            <li>
+                <button id="id-pause-resume" class="btn btn-primary">Resume Game</button>
+            </li>
+            <li>
+                <button id="id-pause-quit" class="btn btn-primary">Quit Game</button>
+            </li>
+        </ul>
+    </div>
+    <div id="game-play" class="screen">
+        <canvas id="id-canvas" width="1280" height="720"></canvas>
+    </div>
+    <div id="high-scores" class="screen frame">
+        <h1>High Scores</h1>
+        <ol>
+            <li id="1">10000</li>
+            <li id="2">9000</li>
+            <li id="3">8000</li>
+            <li id="4">7000</li>
+            <li id="5">0</li>
+        </ol>
+        <ul class="menu">
+            <li>
+                <button id="id-high-scores-back" class="btn btn-primary">Back</button>
+            </li>
+        </ul>
+    </div>
+    <div id="instructions" class="screen frame">
+        <h1>Instructions</h1>
+        <p>You have one job, to land the lunar lander safely. To do so, you must be moving at two m/s or less and be at
+            an upright angle between 5 and 355 degrees. You only have 20 seconds worth of fuel. Use it wisely.</p>
+
+        <p>You will have three seconds to survey the surface and locate one of two landing zones before your craft
+            begins plummeting to the surface. After successfully landing on the surface, you will have three seconds to
+            prepare to land one more time at a new location, this time with only one safe landing zone. Good luck!</p>
+        <ul class="menu">
+            <li>
+                <button id="id-instructions-back" class="btn btn-primary">Back</button>
+            </li>
+        </ul>
+    </div>
+    <div id="settings" class="screen frame">
+        <h1>Settings</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="labels">Thrust</p>
+                </div>
+                <div class="col">
+                    <button id="set-up-key" class="btn btn-danger controls">w</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="labels">Rotate Left</p>
+                </div>
+                <div class="col">
+                    <button id="set-left-key" class="btn btn-danger controls">a</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="labels">Rotate Right</p>
+                </div>
+                <div class="col">
+                    <button id="set-right-key" class="btn btn-danger controls">d</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="labels">Exit Game</p>
+                </div>
+                <div class="col">
+                    <button id="set-esc-key" class="btn btn-danger controls">esc</button>
+                </div>
+            </div>
+        </div>
+        <ul class="menu">
+            <li>
+                <button id="id-settings-back" class="btn btn-primary">Back</button>
+            </li>
+        </ul>
+    </div>
+    <div id="credits" class="screen frame">
+        <h1>Credits</h1>
+        <h4>Original Game Developed by:</h4>
+        <p> Atari, Inc. 1979</p>
+        <h4>Base Code & Concepts by:</h4>
+        <p>Dr. James Mathias</p>
+        <h4>Code Adapted by:</h4>
+        <p>Daniel Dickey</p>
+        <ul class="menu">
+            <li>
+                <button id="id-credits-back" class="btn btn-primary">Back</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    let MyGame = {
+        screens: {},
+        input: {},
+        objects: {},
+        render: [],
+        systems: {},
+    };
+</script>
+<script src="scripts/random.js"></script>
+<script src="scripts/localData.js"></script>
+<script src="scripts/terrainGeneration.js"></script>
+<script src="scripts/style.js"></script>
+<script src="scripts/audio.js"></script>
+<script src="scripts/game.js"></script>
+<script src="scripts/objects/lander.js"></script>
+<script src="scripts/objects/message.js"></script>
+<script src="scripts/objects/background.js"></script>
+<script src="scripts/objects/terrain.js"></script>
+<script src="scripts/render/core.js"></script>
+<script src="scripts/render/texture.js"></script>
+<script src="scripts/render/message.js"></script>
+<script src="scripts/render/terrain.js"></script>
+<script src="scripts/input-keyboard.js"></script>
+<script src="scripts/systems/particle-system.js"></script>
+<script src="scripts/render/particle-system.js"></script>
+<script src="scripts/screens/main_menu.js"></script>
+<script src="scripts/screens/gameplay.js"></script>
+<script src="scripts/screens/high_scores.js"></script>
+<script src="scripts/screens/instructions.js"></script>
+<script src="scripts/screens/settings.js"></script>
+<script src="scripts/screens/credits.js"></script>
+<script src="scripts/screens/pause.js"></script>
+
+</body>
+</html>
